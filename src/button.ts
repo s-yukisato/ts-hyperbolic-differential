@@ -1,39 +1,28 @@
-import Timer from "./timer";
+import Animation from "./animation";
 
-const timer = new Timer();
 
 export default class Button {
-    private start_animation: HTMLButtonElement;
-    private stop_animation: HTMLButtonElement;
-    private next_state: HTMLButtonElement;
-    private prev_state: HTMLButtonElement;
 
-    static next_func: () => void;
-    static prev_func: () => void;
+    private _start: HTMLButtonElement;
 
-    constructor() {
-        this.start_animation = document.querySelector("#start");
-        this.start_animation.onclick = () => timer.enable();
+    private _stop: HTMLButtonElement;
 
-        this.stop_animation = document.querySelector("#stop");
-        this.stop_animation.onclick = () => timer.disable();
+    private _next: HTMLButtonElement;
 
-        this.next_state = document.querySelector("#next");
-        this.next_state.onclick = this.next;
+    private _prev: HTMLButtonElement;
 
-        this.prev_state = document.querySelector("#prev");
-        this.prev_state.onclick = this.prev;
-    }
 
-    next(): void {
-        if (timer.enabled == false) {
-            timer.timer();
-        }
-    }
+    constructor(animation: Animation) {
+        this._start = document.querySelector("#start");
+        this._start.onclick = () => animation.start();
 
-    prev(): void {
-        if (timer.enabled == false) {
-            Button.prev_func();
-        }
+        this._stop = document.querySelector("#stop");
+        this._stop.onclick = () => animation.stop();
+
+        this._next = document.querySelector("#next");
+        this._next.onclick = () => animation.next_state();
+
+        this._prev = document.querySelector("#prev");
+        this._prev.onclick = () => animation.prev_state();
     }
 }

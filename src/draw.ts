@@ -1,29 +1,34 @@
 import Calculator from "./calculator";
 
+
 export default class DrawingData {
     // 現在の状態
     current: number;
-    data: any[];
+    // google chart用のDataTableが入る
+    drawData: any[];
+    // chartの設定
     options: object;
+    // 描画対象のエレメント
     chart: HTMLDivElement;
+    // アニメーション用
     drawChart: () => void;
+
     constructor() {
         this.current = 0;
-        this.data = [];
-        this.options = null;
         this.chart = document.querySelector('#chart');
-        this.drawChart = null;
+        this.setDrawData();
     }
 
-    setCalcResultData() {
-        let rows = Calculator.hyperbolic();
+    setDrawData() {
+        const calcResult = Calculator.hyperbolic();
+        this.drawData = [];
         let count = 0
     
-        for (let k in rows) {
-            this.data[count] = new google.visualization.DataTable();
-            this.data[count].addColumn('number', 'X');
-            this.data[count].addColumn('number', 'U');
-            this.data[count].addRows(rows[k])
+        for (let i in calcResult) {
+            this.drawData[count] = new google.visualization.DataTable();
+            this.drawData[count].addColumn('number', 'X');
+            this.drawData[count].addColumn('number', 'U');
+            this.drawData[count].addRows(calcResult[i])
             count++
         }
     
@@ -43,7 +48,7 @@ export default class DrawingData {
         const chart = new google.visualization.LineChart(this.chart);
     
         this.drawChart = () => {
-            chart.draw(this.data[this.current], this.options);
+            chart.draw(this.drawData[this.current], this.options);
         }
     }
 

@@ -1,34 +1,30 @@
 export default class Timer {
-    // 間隔
-    private interval: number;
+    // 関数呼び出しの間隔
+    private _delay: number;
+    
+    private _enabled: boolean;
 
-    enabled: boolean;
-    // function
-    private _timer: () => void;
-    // intervalTimer
-    private intervalId: number;
+    public func: (transition?: number) => void;
+    // タイマーを識別する数値
+    private _intervalId: number;
 
-    constructor(){
-        this.interval = 100;
-        this.enabled = false;
-        this.intervalId = null;
+    constructor(interval: number){
+        this._delay = interval;
+        this._enabled = false;
+        this._intervalId = null;
     }
 
-    set timer (func: () => void) {
-        this._timer = func;
-    }
-
-    enable(): void {
-        if ((this.timer != null) && (this.enabled == false)) {
-            this.intervalId = window.setInterval(this.timer, this.interval);
-            this.enabled = true;
+    start(): void {
+        if ((this.func != null) && (this._enabled == false)) {
+            this._intervalId = window.setInterval(this.func, this._delay);
+            this._enabled = true;
         }
     }
 
-    disable(): void {
-        if (this.enabled == true) {
-            clearInterval(this.intervalId);
-            this.enabled = false;
+    stop(): void {
+        if (this._enabled == true) {
+            clearInterval(this._intervalId);
+            this._enabled = false;
         }
     }
 }
