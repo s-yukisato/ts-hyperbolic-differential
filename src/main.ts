@@ -30,8 +30,8 @@ window.addEventListener("load", () => {
             draw.drawChart();
         }
 
-        animation = new Animation(100, f);
-
+        animation = new Animation(f, 100);
+        // ボタンクリック時の関数を設定
         new Button(animation);
     }
 });

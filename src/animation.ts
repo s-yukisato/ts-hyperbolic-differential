@@ -1,16 +1,25 @@
 import Timer from "./timer";
 
-
+/**
+ * グラフ描画アニメーション用
+ */
 export default class Animation extends Timer {
 
-    constructor(interval: number, f: (transition?: number) => void) {
-        super(interval);
-        this.func = f
+    constructor(f: (transition?: number) => void, delay: number,) {
+        super(f, delay);
     }
+
     next_state() {
-        this.func();
+        if (this._enabled == false) {
+            // 状態を一つ進める
+            this._func(1);
+        }
     }
+
     prev_state() {
-        this.func(-1);
+        if (this._enabled == false) {
+            // 状態を一つ戻す
+            this._func(-1);
+        }
     }
 }
