@@ -10,16 +10,12 @@ export default class Animation extends Timer {
     }
 
     next_state() {
-        if (this._enabled == false) {
             // 状態を一つ進める
             this._func(1);
-        }
     }
 
     prev_state() {
-        if (this._enabled == false) {
             // 状態を一つ戻す
             this._func(-1);
-        }
     }
 }

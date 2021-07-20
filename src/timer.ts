@@ -4,8 +4,8 @@
 export default class Timer {
     // 関数呼び出しの間隔
     private _delay: number;
-    
-    protected _enabled: boolean;
+    // タイマーが設定されているか
+    protected _hasTimer: boolean;
 
     protected _func: (transition?: number) => void;
     // タイマーを識別する数値
@@ -13,22 +13,26 @@ export default class Timer {
 
     constructor(func: (transition: number) => void, delay: number){
         this._delay = delay;
-        this._enabled = false;
+        this._hasTimer = false;
         this._func = func;
         this._intervalId = null;
     }
 
+    get hasTimer(): boolean {
+        return this._hasTimer;
+    }
+
     start(): void {
-        if ((this._func != null) && (this._enabled == false)) {
+        if ((this._func != null) && (this._hasTimer== false)) {
             this._intervalId = window.setInterval(this._func, this._delay);
-            this._enabled = true;
+            this._hasTimer = true;
         }
     }
 
     stop(): void {
-        if (this._enabled == true) {
+        if (this._hasTimer == true) {
             clearInterval(this._intervalId);
-            this._enabled = false;
+            this._hasTimer = false;
         }
     }
 }

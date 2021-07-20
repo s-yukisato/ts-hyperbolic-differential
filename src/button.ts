@@ -14,10 +14,26 @@ export default class Button {
 
     constructor(animation: Animation) {
         this._start = document.querySelector("#start");
-        this._start.onclick = () => animation.start();
+        this._start.onclick = () => {
+            animation.start();
+            if(animation.hasTimer) {
+                this._start.disabled = true;
+                this._next.disabled = true;
+                this._prev.disabled = true;
+                this._stop.disabled = false;
+            }
+        }
 
         this._stop = document.querySelector("#stop");
-        this._stop.onclick = () => animation.stop();
+        this._stop.onclick = () => {
+            animation.stop();
+            if(!animation.hasTimer) {
+                this._stop.disabled = true;
+                this._start.disabled = false;
+                this._next.disabled = false;
+                this._prev.disabled = false;
+            }
+        }
 
         this._next = document.querySelector("#next");
         this._next.onclick = () => animation.next_state();
