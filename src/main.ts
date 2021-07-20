@@ -11,6 +11,13 @@ window.addEventListener("load", () => {
 
     init();
 
+    const peak:HTMLInputElement = document.querySelector("#peak");
+    peak.onchange = () => {
+        draw.setDrawData(parseFloat(peak.value));
+        draw.current = 0;
+        draw.drawChart();
+    }
+
     async function init() {
         // 描画用のデータの読み込み完了まで待機
         await google.charts.load('current', { packages: ['corechart', 'line'] });
