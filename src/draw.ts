@@ -14,7 +14,7 @@ export default class DrawingData {
     public drawChart: () => void;
 
 
-    constructor() {
+    constructor(peak: number) {
 
         this.current = 0;
 
@@ -36,11 +36,11 @@ export default class DrawingData {
             },
         };
 
-        this.setDrawData();
+        this.setDrawData(peak);
     }
 
-    setDrawData() {
-        const calcResult = Calculator.hyperbolic();
+    setDrawData(peak: number) {
+        const calcResult = Calculator.hyperbolic(peak);
 
         let count = 0
 

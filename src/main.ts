@@ -15,7 +15,7 @@ window.addEventListener("load", () => {
         // 描画用のデータの読み込み完了まで待機
         await google.charts.load('current', { packages: ['corechart', 'line'] });
         // アニメーションに必要なデータをインスタンス変数に格納する
-        draw = new DrawingData();
+        draw = new DrawingData(0.5);
         // 描画する
         draw.drawChart();
 
