@@ -9,8 +9,6 @@ window.addEventListener("load", () => {
 
     let draw:DrawingData;
 
-    let buttons: Button;
-
     init();
 
     const peak:HTMLInputElement = document.querySelector("#peak");
@@ -41,6 +39,6 @@ window.addEventListener("load", () => {
 
         animation = new Animation(f, 100);
         // ボタンクリック時の関数を設定
-        buttons = new Button(animation);
+        new Button(animation);
     }
 });
