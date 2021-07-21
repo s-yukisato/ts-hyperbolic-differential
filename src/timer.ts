@@ -1,3 +1,7 @@
+export type motionTimer = {
+    (transition?: number): void
+}
+
 /**
  *  インターバルタイマー
  */
@@ -5,21 +9,17 @@ export default class Timer {
     // 関数呼び出しの間隔
     private _delay: number;
     // タイマーが設定されているか
-    protected _hasTimer: boolean;
+    private _hasTimer: boolean;
 
-    protected _func: (transition?: number) => void;
+    protected _func: motionTimer;
     // タイマーを識別する数値
     private _intervalId: number;
 
-    constructor(func: (transition: number) => void, delay: number){
+    constructor(func: motionTimer, delay: number){
         this._delay = delay;
         this._hasTimer = false;
         this._func = func;
         this._intervalId = null;
-    }
-
-    get hasTimer(): boolean {
-        return this._hasTimer;
     }
 
     start(): void {

@@ -1,21 +1,22 @@
 import Timer from "./timer";
+import { motionTimer } from "./timer";
 
 /**
  * グラフ描画アニメーション用
  */
-export default class Animation extends Timer {
+export default class Animation extends Timer implements Motion {
 
-    constructor(f: (transition?: number) => void, delay: number,) {
+    constructor(f: motionTimer, delay: number,) {
         super(f, delay);
     }
 
-    next_state() {
-            // 状態を一つ進める
-            this._func(1);
+    next() {
+        // 状態を一つ進める
+        this._func(1);
     }
 
-    prev_state() {
-            // 状態を一つ戻す
-            this._func(-1);
+    prev() {
+        // 状態を一つ戻す
+        this._func(-1);
     }
 }

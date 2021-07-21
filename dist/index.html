@@ -5,23 +5,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./bootstrap/style.css">
     <script src="./bootstrap/main.js"></script>
-    <title>Document</title>
+    <title>Simulator</title>
     <script src="./bundle.js"></script>
 </head>
 
 <body>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <p>TYPE</p>
-    <div id="chart"></div>
-    <div class="btn-group">
-        <input id="peak" type="range" min="0.1" max="0.9" step="0.1" value="0.5">
-        <button id="prev" value="-1" class="btn btn-secondary">PREV</button>
-        <button id="next" value="1" class="btn btn-info">NEXT</button>
-        <button id="start" value="1" class="btn btn-primary">START</button>
-        <button id="stop" class="btn btn-danger">STOP</button>
-    </div>
+    <header>
+        <div class="bg-dark">
+            <div class="text-center text-white p-3">
+                <h1><b>双曲型偏微分方程式</b></h1>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div id="chart"></div>
+        <div class="m-3">
+            <label for="peak">初期位置</label>
+            <input id="peak" type="range" min="0.1" max="0.9" step="0.1" value="0.5">
+        </div>
+        <div class="btn-group m-3">
+            <button id="prev" class="btn btn-secondary m-1">PREV</button>
+            <button id="next" class="btn btn-info m-1">NEXT</button>
+            <button id="start" class="btn btn-warning m-1">START</button>
+            <button id="stop" disabled="true" class="btn btn-danger m-1">STOP</button>
+        </div>
+    </main>
 </body>
 
 </html>
