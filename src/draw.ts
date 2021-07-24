@@ -24,12 +24,12 @@ export default class DrawingData {
 
         this.options = {
             title: "hyperbolic partial differential equation",
-            width: 828,
+            width: 768,
             height: 414,
             animation: { duration: 100 },
-            hAxis: { title: 'x' },
+            hAxis: { title: 'x: 位置' },
             vAxis: {
-                title: 'U',
+                title: 'u: 波の高さ',
                 minValue: -0.6,
                 maxValue: 0.6,
                 ticks: [-0.5, -0.4, -0.3, -0.2, -0.1, 0.0, 0.1, 0.2, 0.3, 0.4, 0.5]
