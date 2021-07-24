@@ -13,7 +13,14 @@ window.addEventListener("load", () => {
 
     const peak:HTMLInputElement = document.querySelector("#peak");
     peak.onchange = () => {
-        draw.setDrawData(parseFloat(peak.value));
+        draw.setDrawData(parseFloat(peak.value), Number(speed.value));
+        draw.current = 0;
+        draw.drawChart();
+    }
+
+    const speed:HTMLInputElement = document.querySelector("#speed");
+    speed.onchange = () => {
+        draw.setDrawData(parseFloat(peak.value), Number(speed.value));
         draw.current = 0;
         draw.drawChart();
     }
@@ -22,7 +29,7 @@ window.addEventListener("load", () => {
         // 描画用のデータの読み込み完了まで待機
         await google.charts.load('current', { packages: ['corechart', 'line'] });
         // アニメーションに必要なデータをインスタンス変数に格納する
-        draw = new DrawingData(0.5);
+        draw = new DrawingData(0.5, 100);
         // 描画する
         draw.drawChart();
 

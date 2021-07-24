@@ -18,14 +18,16 @@ export default class Calculator {
         const r = k / h;
         const q = r * r;
         const s = 2.0 * (1.0 - q);
-
+        // 初期位置を定める
         let ia = peak * n;
+        // 振幅（波の高さ)
+        let a = 0.5;
 
         for (let i = 0; i <= ia; i++) {
-            u[i] = i / ia * 0.5;
+            u[i] = i / ia * a;
         }
         for (let i = ia; i <= n; i++) {
-            u[i] = 0.5 - ((i - ia) / (n - ia)) * 0.5;
+            u[i] = a - ((i - ia) / (n - ia)) * a;
         }
         for (let i = 0; i <= n; i++) {
             v[i] = u[i]
@@ -43,6 +45,7 @@ export default class Calculator {
                 }
             }
             for (let i = 1; i < n; i++) {
+                // 次の状態を求める
                 w[i] = q * (u[i + 1] + u[i - 1]) + s * u[i] - v[i]
             }
             for (let i = 0; i <= n; i++) {

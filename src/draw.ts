@@ -14,7 +14,7 @@ export default class DrawingData {
     public drawChart: () => void;
 
 
-    constructor(peak: number) {
+    constructor(peak: number, speed: number) {
 
         this.current = 0;
 
@@ -22,24 +22,10 @@ export default class DrawingData {
 
         this.drawData = [];
 
-        this.options = {
-            title: "hyperbolic partial differential equation",
-            width: 768,
-            height: 414,
-            animation: { duration: 100 },
-            hAxis: { title: 'x: 位置' },
-            vAxis: {
-                title: 'u: 波の高さ',
-                minValue: -0.6,
-                maxValue: 0.6,
-                ticks: [-0.5, -0.4, -0.3, -0.2, -0.1, 0.0, 0.1, 0.2, 0.3, 0.4, 0.5]
-            },
-        };
-
-        this.setDrawData(peak);
+        this.setDrawData(peak, speed);
     }
 
-    setDrawData(peak: number) {
+    setDrawData(peak: number, speed: number) {
         const calcResult = Calculator.hyperbolic(peak);
 
         let count = 0
@@ -51,6 +37,20 @@ export default class DrawingData {
             this.drawData[count].addRows(calcResult[i])
             count++
         }
+
+        this.options = {
+            title: "hyperbolic partial differential equation",
+            width: 616,
+            height: 414,
+            animation: { duration: speed },
+            hAxis: { title: 'x: 位置' },
+            vAxis: {
+                title: 'u: 波の高さ',
+                minValue: -0.6,
+                maxValue: 0.6,
+                ticks: [-0.5, -0.4, -0.3, -0.2, -0.1, 0.0, 0.1, 0.2, 0.3, 0.4, 0.5]
+            },
+        };
 
         const chart = new google.visualization.LineChart(this._chartElement);
 
