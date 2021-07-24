@@ -7,22 +7,29 @@ window.addEventListener("load", () => {
 
     let animation: Animation;
 
-    let draw:DrawingData;
+    let draw: DrawingData;
 
     init();
 
-    const peak:HTMLInputElement = document.querySelector("#peak");
+    const peak: HTMLInputElement = document.querySelector("#peak");
     peak.onchange = () => {
         draw.setDrawData(parseFloat(peak.value), Number(speed.value));
+        animation.delay = Number(speed.value);
         draw.current = 0;
         draw.drawChart();
     }
 
-    const speed:HTMLInputElement = document.querySelector("#speed");
+    const speed: HTMLInputElement = document.querySelector("#speed");
     speed.onchange = () => {
         draw.setDrawData(parseFloat(peak.value), Number(speed.value));
+        animation.delay = Number(speed.value);
         draw.current = 0;
+    }
+
+    window.onresize = function () {
+
         draw.drawChart();
+
     }
 
     async function init() {

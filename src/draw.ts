@@ -33,18 +33,19 @@ export default class DrawingData {
         for (let i in calcResult) {
             this.drawData[count] = new google.visualization.DataTable();
             this.drawData[count].addColumn('number', 'X');
-            this.drawData[count].addColumn('number', 'U');
+            this.drawData[count].addColumn('number', "U");
             this.drawData[count].addRows(calcResult[i])
             count++
         }
 
         this.options = {
             title: "hyperbolic partial differential equation",
-            width: 616,
-            height: 414,
+            legend: {position: 'none'},
             animation: { duration: speed },
+            chartArea: { left: 50, top: 30, bottom: 50, right: 20, width: "80%", height: "80%" },
             hAxis: { title: 'x: 位置' },
             vAxis: {
+                textStyle: { fontSize: 16 },
                 title: 'u: 波の高さ',
                 minValue: -0.6,
                 maxValue: 0.6,

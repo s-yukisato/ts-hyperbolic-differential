@@ -22,6 +22,10 @@ export default class Timer {
         this._intervalId = null;
     }
 
+    set delay(speed: number) {
+        this._delay = speed;
+    }
+
     start(): void {
         if ((this._func != null) && (this._hasTimer== false)) {
             this._intervalId = window.setInterval(this._func, this._delay);
